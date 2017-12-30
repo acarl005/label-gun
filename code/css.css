@@ -1,0 +1,43 @@
+img.downloaded {
+  border: 3px solid #00ff00;
+}
+
+img.downloading {
+  opacity: 0.5;
+}
+
+#label-popup {
+  position: fixed;
+  left: -100px;
+  bottom: 0;
+  width: 100px;
+  height: 100px;
+  background: white;
+  transition: 0.5s;
+  z-index: 9999;
+}
+
+#label-popup.visible {
+  left: 0px;
+}
+
+#label-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#label-class {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: green;
+  color: white;
+  font-size: 20px;
+}
+
+#label-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+

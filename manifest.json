@@ -1,0 +1,24 @@
+{
+  "name": "Label Gun",
+  "version": "1.0",
+  "author": "Andrew Carlson <acarl005@g.ucla.edu>",
+  "manifest_version": 2,
+  "description": "Quickly download and label images from the web for machine learning.",
+  "icons": { 
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png" 
+  },
+  "background": {
+    "scripts": [ "resources/md5.min.js", "code/background.js" ]
+  },
+  "content_scripts": [
+    {
+      "matches": [ "<all_urls>" ],
+      "js": [ "resources/jquery.min.js", "code/js.js" ],
+      "css": [ "code/css.css" ]
+    }
+  ],
+  "web_accessible_resources": [ "resources/*" ],
+  "permissions": [ "downloads" ]
+}
