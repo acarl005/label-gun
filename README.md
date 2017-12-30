@@ -15,6 +15,8 @@ You should see this image appear inside `Downloads/label-gun`.
 The file name should include the MD5 hash.
 You should also see confirmation of download in the lower left hand corner of the page.
 
+![demo](images/demo.gif)
+
 ## Installation
 
 Not in the chrome web store yet. You'll have to download the code, enable developer mode, and install the extension manually.
