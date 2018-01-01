@@ -8,13 +8,14 @@ img.downloading {
 
 #label-popup {
   position: fixed;
-  left: -100px;
+  left: -102px;
   bottom: 0;
   width: 100px;
   height: 100px;
   background: white;
   transition: 0.5s;
   z-index: 9999;
+  border: 1px solid black;
 }
 
 #label-popup.visible {
@@ -29,7 +30,7 @@ img.downloading {
 
 #label-class {
   position: absolute;
-  bottom: 0;
+  top: 0;
   right: 0;
   background: green;
   color: white;
