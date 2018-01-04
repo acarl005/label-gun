@@ -21,3 +21,7 @@ You should also see confirmation of download in the lower left hand corner of th
 
 Not in the chrome web store yet. You'll have to download the code, enable Chrome's developer mode in `chrome://extensions`, and install the extension manually.
 
+### Warning
+
+If you happen to have [Vimium](https://github.com/philc/vimium) installed, it will block the keypress events on the number keys that Label Gun looks for.
+
