@@ -32,7 +32,7 @@ function download(req, done) {
     const newFilename = md5(imageURL)
     downloadOpts.filename = `label-gun/${number}/${newFilename}.${mimetype}`
   } else {
-    let filename = String(Date.now())
+    let filename = `label-gun/${number}/${Date.now()}`
     if (mimeTypePattern.test(imageURL)) {
       filename += imageURL.match(mimeTypePattern)[0]
     }
