@@ -2,6 +2,10 @@ img.downloaded {
   border: 3px solid #00ff00;
 }
 
+img.download-error {
+  border: 3px solid #ff0000;
+}
+
 img.downloading {
   opacity: 0.5;
 }

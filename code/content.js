@@ -111,6 +111,11 @@ function toDataURL(image, number) {
     ctx.drawImage(newImage, 0, 0)
     tellBackgroundToDownload(canvas.toDataURL('image/jpg'), number, image.getAttribute('data-label-id'))
   })
+  newImage.addEventListener('error', err => {
+    //image.classList.remove('downloading')
+    //image.classList.add('download-error')
+    tellBackgroundToDownload(image.src, number, image.getAttribute('data-label-id'))
+  })
   // prefix the URL with our proxy URL
   newImage.src = proxyURL + image.src
 }

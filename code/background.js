@@ -1,5 +1,6 @@
 /* global chrome */
 const dataURLPattern = /data:image\/(\w+);/
+const mimeTypePattern = /\.(png|jpe?g)\b/i
 
 // the main message listener
 chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
@@ -21,13 +22,22 @@ function download(req, done) {
   if (window.disabled) {
     return done({ imageURL, imageId, number })
   }
-  const mimetype = imageURL.match(dataURLPattern)[1]
-  // hash the image itself and use this as a filename, this is a way to prevent duplicates
-  const newFilename = md5(imageURL)
-  chrome.downloads.download({
+  const downloadOpts = {
     url: imageURL,
-    filename: `label-gun/${number}/${newFilename}.${mimetype}`,
     conflictAction: 'overwrite'
-  }, () => done({ imageURL, imageId, number, downloaded: true }))
+  }
+  if (dataURLPattern.test(imageURL)) {
+    const mimetype = imageURL.match(dataURLPattern)[1]
+    // hash the image itself and use this as a filename, this is a way to prevent duplicates
+    const newFilename = md5(imageURL)
+    downloadOpts.filename = `label-gun/${number}/${newFilename}.${mimetype}`
+  } else {
+    let filename = String(Date.now())
+    if (mimeTypePattern.test(imageURL)) {
+      filename += imageURL.match(mimeTypePattern)[0]
+    }
+    downloadOpts.filename = filename
+  }
+  chrome.downloads.download(downloadOpts, () => done({ imageURL, imageId, number, downloaded: true }))
 }
 
