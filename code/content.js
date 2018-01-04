@@ -39,7 +39,7 @@ $(document).ready(() => {
 
   // when a number key is pressed, trigger the download
   $('body').on('keypress', e => {
-    if (isNumberKey(e.keyCode)) {
+    if (isNumberKey(e.keyCode) && !!selectedImage) {
       const number = e.keyCode - 48
       download(selectedImage, number)
     }
@@ -78,6 +78,9 @@ function onDownloadComplete(resp) {
   const { imageURL, imageId, number } = resp
   // locate the image that triggered this download
   const img = $(`img[data-label-id=${resp.imageId}]`)
+  if (!resp.downloaded) {
+    return img.removeClass('downloading')
+  }
   img.removeClass('downloading')
   img.addClass(`downloaded downloaded-${number}`)
   // show the popup and add the image

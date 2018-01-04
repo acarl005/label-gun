@@ -17,6 +17,10 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
 
 function download(req, done) {
   const { imageURL, imageId, number } = req
+  // a global switch the the user can toggle to enable or disable the extension
+  if (window.disabled) {
+    return done({ imageURL, imageId, number })
+  }
   const mimetype = imageURL.match(dataURLPattern)[1]
   // hash the image itself and use this as a filename, this is a way to prevent duplicates
   const newFilename = md5(imageURL)
@@ -24,6 +28,6 @@ function download(req, done) {
     url: imageURL,
     filename: `label-gun/${number}/${newFilename}.${mimetype}`,
     conflictAction: 'overwrite'
-  }, () => done({ imageURL, imageId, number }))
+  }, () => done({ imageURL, imageId, number, downloaded: true }))
 }
 
